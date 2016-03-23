@@ -6,17 +6,15 @@ This is a lightweight image for running [attic](https://attic-backup.org/). This
 
 ### Initialize a repository
 ```
-docker run -v /var/repository/location:/repository bwaldher/attic attic init /repository
+docker run -v /:/os xori/attic init /os/var/repo
 ```
 
 ### Create a backup
 ```
-docker run -v /var/repository/location:/repository \
-           -v /var/directory/to/be/backed/up:/backup bwaldher/attic attic create /repository::`date -Iseconds` /backup
+docker run -v /:/os xori/attic create /os/var/repo::`date -Iseconds` /os/home/me
 ```
 
 ### Extract a backup
 ```
-docker run -v /var/repository/location:/repository \
-           -v /var/destination:/destination bwaldher/attic attic extract /repository::2016-02-19T16:44:10+00:00 /destination
+docker run -v /:/os xori/attic extract /os/var/repo::2016-02-19T16:44:10+00:00 /os/home/me
 ```
